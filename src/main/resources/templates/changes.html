@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TBS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form method="post" action="/save" >
+    <p>
+    <span th:text="${event}"></span>
+    <input type="hidden" th:name="event" th:value="${event.getId()}"/>
+    </p>
+    <select size="1" name="status">
+        <span th:each="status : ${statuses}">
+        <option th:value="${status.getLevel()}" th:text="${status.getStatus()}"></option>
+        </span>
+    </select>
+    <input id="edit" type="submit" value="Change status"/>
+</form>
+</body>
+</html>

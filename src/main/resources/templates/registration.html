@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TBS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form method="post" action="/addUser">
+    <p>name: <input type="text" placeholder="Allan" th:name="name"></p>
+    <p>surname: <input type="text" placeholder="Charmander" th:name="surname"></p>
+    <p>phone: <input type="text" placeholder="380987455555" th:name="phone"></p>
+    <p>login: <input type="text" placeholder="example@gmail.com" th:name="login"></p>
+    <p>password[6-* symbols]: <input type="password" th:name="password"></p>
+    <p><input  type="submit" value="Register me"></p>
+</form>
+<p th:text="${Error}"></p>
+</body>
+</html>

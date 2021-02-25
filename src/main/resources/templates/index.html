@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TBS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+   #grid {display: grid; grid-template-columns: repeat(auto-fit, 30.3em); grid-gap: 2vw;}
+   #grid > div { font-size: 1vw; background: #588a88; padding:.5em;}
+   header{width: 100%; position: float; text-align:right; color: #333; }
+   body{margin:0; padding:0;}
+   #schedule{font-size: 1vw; margin-bottom:2%; border: 2px solid #333; padding:0.5em; background:transparent; cursor:pointer;}
+   input[type="button"]{margin-right:1.5%; border:none; font-size: 1vw; background:transparent;cursor:pointer;}
+    </style>
+</head>
+<body>
+<header>
+    <p> <input type="button" onclick="location.href='/logIn'" value="[log in]"> </p>
+    <p> <input type="button" onclick="location.href='/myProfile'" value="[my profile]"> </p>
+    <p> <input type="button" onclick="location.href='/register'" value="[register]"> </p>
+</header>
+<form method="post" action="/schedule">
+    <input id="schedule" type="submit" value="Get schedule  &#x1F4CB;">
+<div id="grid">
+    <div th:each="area : ${areas}">
+        <b><input type="radio" checked th:value="${area.getNumber()}" name="number"><p th:text="'Number: '+${area.getNumber()}"></p></b>
+        <p th:text="'Description: '+${area.getDescription()}"></p>
+        <p>Benefits:</p>
+        <th:block th:each="facility : ${area.getFacilities()}">
+            <span th:text="${facility.getName()}+'&emsp;'"></span>
+        </th:block>
+    </div>
+</div>
+</form>
+</body>
+</html>

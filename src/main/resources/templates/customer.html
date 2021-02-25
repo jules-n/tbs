@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TBS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        header{width: 100%; font-weight: bold; 100%; position: float; color: #333; background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);}
+        body{margin:0; padding:0;}
+        input[type="button"]{margin:1.5%; border:none; font-size: 1vw; background:transparent;cursor:pointer;}
+        #pay{width:6%; background-color:#7f8bb5; padding:0.5%; font-size: 1vw; border:none; border-radius:30px; height:2vw;}
+    </style>
+</head>
+<body>
+<header>
+    <span th:text="'Hi, '+${user.getName()}+'&emsp;'"/>
+    <input type="button" onclick="location.href='/logOut'" value="[log out]">
+    <input type="button" onclick="location.href='/'" value="[go to main]">
+</header>
+<main>
+<p>
+    <input type="button" onclick="location.href='/reload'" value="[reload &#8634;]">
+    <input type="button" onclick="location.href='/byStatusDown'" value="[filter by status &#11015;]">
+    <input type="button" onclick="location.href='/byStatusUp'" value="[filter by status &#11014;]">
+</p>
+    <div id="container">
+        <div class="event" th:each="event : ${events}">
+            <p>
+                <form method="post" action="/pay">
+                <span th:text="${event}"></span>
+                <input type="hidden" name="id" th:value="${event.getId()}">
+                <span th:if="${event.getStatus().getLevel() == 2}"><input type="submit" id="pay" value="pay" ></span>
+                </form>
+            </p>
+        </div>
+    </div>
+</main>
+</body>
+</html>

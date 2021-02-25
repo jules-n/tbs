@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TBS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        header{width: 100%; font-weight: bold; 100%; position: float; color: #333; background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);}
+        body{margin:0; padding:0;}
+        input[type="button"]{margin:1.5%; border:none; font-size: 1vw; background:transparent;cursor:pointer;}
+        table, th, td {border: 1px solid black; border-collapse: collapse; text-align: center;}
+        table{width:30%;}
+        main{padding:1%;}
+    </style>
+</head>
+<body>
+<header>
+    <span th:text="'Hi, '+${user.getName()}+'&emsp;'"/>
+    <input type="button" onclick="location.href='/logOut'" value="[log out]">
+    <input type="button" onclick="location.href='/'" value="[go to main]">
+</header>
+<main>
+    <p>For all time:</p>
+    <table>
+        <tr>
+            <th>Status</th>
+            <th>Number</th>
+            <th>Sum</th>
+        </tr>
+        <div th:each="status:${statuses}">
+        <tr>
+
+        <td><p th:text="${status.getName()}"></p></td>
+        <td><p th:text="${status.getNumber()}"></p></td>
+        <td><p th:text="${status.getSum()}"></p></td>
+
+        </tr>
+        </div>
+    </table>
+    <p th:text="'Sum for this year: '+${sum}"></p>
+    <p th:text="'number: '+${area.getNumber()}+' '+${area.getDescription()}"></p>
+</main>
+</body>
+</html>

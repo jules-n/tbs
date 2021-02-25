@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TBS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+       body{margin:0; padding:0;}
+       input[type="button"]{margin:1.5%; border:none; font-size: 1vw; background:transparent;cursor:pointer;}
+       main{display:flex; flex-direction:row; width:100%; padding:1%}
+       #container{width:45%; height:30vw; overflow-y:scroll;}
+    </style>
+</head>
+<body>
+
+<main>
+<p></p>
+    <div id="container">
+        <div th:each="event : ${events}">
+            <p th:text="${event.getId()}+'&emsp;'+${event.getFrom().toLocalDateTime().toString()}+'&emsp;-&emsp;'+${event.getTo().toLocalDateTime().toString()}"></p>
+        </div>
+    </div>
+    <div>
+        <form method="post" action="/addEvent" >
+            <input type="hidden" name="area" th:value="${area}">
+            <p>MM-DD:<input type="text" size="2" name="month">-<input type="text" size="2" name="day"></p>
+            <p>time from(HH-MM):<input type="text" name="hourFrom" max="23" size="2" min="0">:<input type="text" name="minuteFrom" size="2" max="59" min="0"></p>
+            <p>time from(HH-MM):<input type="text" name="hourTo" size="2" max="23" min="0">:<input type="text" name="minuteTo" size="2" max="59" min="0"></p>
+            <p>number of clients:<input type="text" name="numberOfClients" size="2" min="2"></p>
+            <p><input type="submit" value="[add]"></p>
+        </form>
+        <span th:text="${err}"></span>
+    </div>
+</main>
+</body>
+</html>

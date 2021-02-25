@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TBS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        #container{width:40%; overflow-y:scroll; height:10vw;}
+    </style>
+</head>
+<body>
+<form method="post" action="/addArea">
+
+    <p>name: <input type="text" name="number"></p>
+    <p>description:</p>
+    <p><textarea rows="10" cols="60" name="description"></textarea></p>
+    <p>add benefit:</p>
+    <div id="container">
+    <span th:each="facility:${facilities}">
+        <p><input type="checkbox" name="facilitiesInRoom" th:text="${facility.getName()}" th:value="${facility.getId()}"></p>
+    </span>
+    </div>
+    <p><input  type="submit" value="add area"></p>
+</form>
+</body>
+</html>

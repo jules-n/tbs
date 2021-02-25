@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TBS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        header{width: 100%; font-weight: bold; 100%; position: float; color: #333; margin-bottom:3%; background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);}
+        body{margin:0; padding:0;}
+        input[type="button"]{margin:1.5%; border:none; font-size: 1vw; background:transparent;cursor:pointer;}
+        #edit{border:none; text-align: center; text-decoration: none; display: inline-block; padding:1%; background-color: #555555; color: white;}
+        #container{width:97.8%; padding:1%; height:15vw; overflow-y:scroll; border: solid 1px black;}
+    </style>
+</head>
+<body>
+<header>
+    <span th:text="'Hi, '+${user.getName()}+'&emsp;'"/>
+    <input type="button" onclick="location.href='/logOut'" value="[log out]">
+    <input type="button" onclick="location.href='/register'" value="[add admin]">
+    <input type="button" onclick="location.href='/addArea'" value="[add area]">
+    <input type="button" onclick="location.href='/addFacility'" value="[add facility]">
+    <input type="button" onclick="location.href='/'" value="[go to main]">
+</header>
+<form method="post" action="/changeStatus">
+    <input id="edit" type="submit" value="Change status"/>
+    <div id="container">
+    <div class="event" th:each="event : ${events}">
+        <p>
+            <input type="radio" checked name="event" th:value="${event.getId()}">
+            <span th:text="${event}"></span>
+        </p>
+    </div>
+    </div>
+</form>
+<input type="button" onclick="location.href='/reload'" value="[reload &#8634;]">
+<input type="button" onclick="location.href='/byStatusDown'" value="[filter by status &#11015;]">
+<input type="button" onclick="location.href='/byTimeDown'" value="[filter by time &#11015;]">
+<input type="button" onclick="location.href='/byNewDown'" value="[filter by newness &#11015;]">
+<input type="button" onclick="location.href='/byStatusUp'" value="[filter by status &#11014;]">
+<input type="button" onclick="location.href='/byTimeUp'" value="[filter by time &#11014;]">
+<input type="button" onclick="location.href='/byNewUp'" value="[filter by newness &#11014;]">
+</body>
+</html>

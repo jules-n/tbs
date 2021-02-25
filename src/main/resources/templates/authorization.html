@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TBS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form method="post" action="/getUser">
+    <p>login: <input type="text" placeholder="example@gmail.com" th:name="login"></p>
+    <p>password[6-* symbols]: <input type="password" th:name="password"></p>
+    <p><input  type="submit" value="Log in"></p>
+</form>
+<p th:text="${Error}"></p>
+</body>
+</html>
